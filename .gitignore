@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+.dvc/cache
+.dvc/tmp
+.dvc/config.local
+*.h5
