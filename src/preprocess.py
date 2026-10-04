@@ -7,10 +7,11 @@ with open("params.yaml") as f:
     cfg = yaml.safe_load(f)["preprocess"]
 
 raw = np.load("data/raw/fashion_mnist.npz")
-mean = raw["x_train"].mean()
-std = raw["x_train"].std()
-x_train = (raw["x_train"].astype("float32") - mean) / std
-x_test = (raw["x_test"].astype("float32") - mean) / std
+pixels = raw["x_train"].astype("float32") / 255.0
+mean = pixels.mean()
+std = pixels.std()
+x_train = (pixels - mean) / std
+x_test = (raw["x_test"].astype("float32") / 255.0 - mean) / std
 
 x_tr, x_val, y_tr, y_val = train_test_split(
     x_train,
